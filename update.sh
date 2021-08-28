@@ -4,4 +4,3 @@ aws cloudformation update-stack \
   --parameters file://$3 \
   --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" \
   --region=us-east-1 \
-  --profile udacity
