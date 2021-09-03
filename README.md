@@ -3,7 +3,7 @@
 
 This is a solution for the Deploy a high-availability web app using using Cloudformation project for the Udacity Devops Nanodegree course.
 
-To see my deployment, go to [udagram](http://udagr-webap-yysnr04sspmq-1208251166.us-east-1.elb.amazonaws.com/).
+To see my deployment, go to [udagram](http://udagr-webap-scvlyq20ncj7-705327966.us-east-1.elb.amazonaws.com/).
 
 Here is the picture of the working page:
 
