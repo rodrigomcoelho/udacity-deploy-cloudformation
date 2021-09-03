@@ -37,7 +37,7 @@ Parameters:
     Type: String
   AMI:
     Description: Please enter the machine Image to be used.
-    Type: String
+    Type: AWS::EC2::Image::Id
     Default: ami-0747bdcabd34c712a
 
 Resources:
@@ -278,14 +278,25 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
             #!/bin/bash
-            apt-get update -y
-            apt-get install unzip awscli -y
-            apt-get install apache2 -y
+            sudo apt-get update -y
+            sudo apt-get install unzip awscli -y
+            sudo apt-get install apache2 -y
+            sudo systemctl start apache2.service
             cd /var/www/html
-            systemctl start apache2.service
-            aws s3 cp s3://udacity-demo-1/udacity.zip .
-            unzip -oj udacity.zip
-            systemctl restart apache2.service
+            echo "<html>" > index.html
+            echo "<head>" >> index
+            echo "  <title>Udagram</title>" >> index.html
+            echo "</head>" >> index.html
+            echo "<body>" >> index.html
+            echo "  <header>" >> index.html
+            echo "    <h1>It works! Udagram, Udacity</h1>" >> index.html
+            echo "  </header>" >> index.html
+            echo "  <footer>by Rodrigo Coelho</footer>" >> index.html
+            echo "</body>" >> index.html
+            echo "</html>" >> index.html
+            sudo aws s3 cp s3://udacity-demo-1/udacity.zip .
+            sudo unzip -oj udacity.zip
+            sudo systemctl restart apache2.service
   WebAppGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
     DependsOn: [PrivateSubnet1, PrivateSubnet2]
@@ -326,7 +337,6 @@ Resources:
       VpcId: !Ref VPC
   Listener:
     Type: AWS::ElasticLoadBalancingV2::Listener
-    DependsOn: WebAppTargetGroup
     Properties:
       DefaultActions: # Required
         - Type: forward
