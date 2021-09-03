@@ -26,10 +26,10 @@ sh create.sh <stack_name> udagram.yml udagram-params.json
 
 To update the current stack run:
 ```bash
-sh update.sh mystack udagram.yml udagram-params.json
+sh update.sh <stack_name> udagram.yml udagram-params.json
 ```
 
 To delete stack run:
 ```bash
-sh update.sh mystack udagram.yml udagram-params.json
+sh update.sh <stack_name> udagram.yml udagram-params.json
 ```
